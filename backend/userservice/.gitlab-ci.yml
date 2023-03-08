@@ -1,0 +1,17 @@
+image: maven:latest
+variables:
+  SONAR_TOKEN: $SONAR_TOKEN_USERSERVICE
+  SONAR_HOST_URL: "https://sonarcloud.io"
+  GIT_DEPTH: 0
+
+sonarcloud-backend-user:
+  stage: sonar
+  script:
+    - cd "${CI_PROJECT_DIR}/backend/userservice"
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=com.dossier.userservice -Dsonar.login=$SONAR_TOKEN_USERSERVICE -Dsonar.organization=zemoso-int
+      -Dsonar.qualitygate.wait=true
+  allow_failure: true
+  only:
+    - merge_requests
+    - dev
+    - main

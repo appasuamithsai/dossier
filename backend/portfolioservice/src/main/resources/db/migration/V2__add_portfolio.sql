@@ -1,0 +1,1 @@
+INSERT INTO `portfolio` VALUES (2,'Fintech Portfolio','file','www.dossier.com','62c458125a732515dd6f4743');
